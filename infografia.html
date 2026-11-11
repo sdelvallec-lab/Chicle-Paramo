@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="logo.png" type="image/png"><title>Instala la app · Chicle & Páramo</title><style>
+@font-face{font-family:"Bricolage Grotesque";font-weight:500;font-display:swap;src:url(fuentes/bricolage-grotesque-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-weight:800;font-display:swap;src:url(fuentes/bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:400;font-display:swap;src:url(fuentes/figtree-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Figtree;font-weight:600;font-display:swap;src:url(fuentes/figtree-latin-600-normal.woff2) format("woff2")}
+:root{
+ --ink:#17332C;--paper:#FFFDF9;--frail:#9DB5A8;
+ --bear:#E4572E;--bear-d:#C8421C;--shark:#1F8FAE;--lagoon:#12708C;--fruit:#E8A317;
+ --candy:#FFDCE8;--mint:#CDEEDD;--sun:#FFD84D;
+ --pop:5px 5px 0 var(--ink);
+ --doodle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' fill='none' stroke='%2317332C' stroke-opacity='.11' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='44' cy='48' r='15'/%3E%3Ccircle cx='31' cy='32' r='6'/%3E%3Ccircle cx='57' cy='32' r='6'/%3E%3Cpath d='M170 74C148 58 146 40 159 36C166 34 170 41 170 43C170 41 174 34 181 36C194 40 192 58 170 74Z'/%3E%3Cpath d='M70 168l6 13 14 2-10 10 3 14-13-7-13 7 3-14-10-10 14-2Z'/%3E%3Cpath d='M138 170Q154 152 182 161L193 144L195 166Q208 168 206 175Q193 175 184 183Q166 190 138 170Z'/%3E%3Ccircle cx='212' cy='36' r='4'/%3E%3Ccircle cx='24' cy='122' r='4'/%3E%3Ccircle cx='120' cy='110' r='3'/%3E%3Ccircle cx='120' cy='222' r='4'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.05rem/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.02;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+
+/* Franja superior y barra de menú */
+.top{background:var(--ink);color:var(--paper);font-size:.88rem}
+.top .wrap{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.top a{font-weight:600;text-decoration:none;color:var(--sun)}
+.top a:hover{text-decoration:underline}
+.top :focus-visible{outline-color:var(--sun)}
+.bar{position:sticky;top:0;z-index:10;background:var(--lagoon);color:#fff}
+.bar .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px;gap:0 10px}
+.bar .l,.bar .r{display:flex;gap:4px;flex-wrap:nowrap}
+.bar .l{justify-self:end}
+.bar .r{justify-self:start}
+.bar a.m{text-decoration:none;font-weight:600;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.bar a.m:hover{background:rgba(255,255,255,.2)}
+.bar :focus-visible{outline-color:#fff}
+.brand{align-self:start;margin:4px 24px -62px;width:150px;display:block;position:relative;z-index:2;transform:rotate(-3deg);transition:transform .15s;filter:drop-shadow(3px 3px 0 rgba(23,51,44,.45))}
+.brand img{display:block;width:100%;height:auto}
+.brand:hover{transform:rotate(2deg) scale(1.05)}
+
+/* Botones */
+.btn{display:inline-flex;gap:8px;align-items:center;font:600 1rem Figtree,sans-serif;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:10px 22px;border-radius:999px;cursor:pointer;text-decoration:none;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--sun)}
+.btn:active{transform:translate(1px,1px);box-shadow:none}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn.alt:hover{box-shadow:3px 3px 0 var(--ink)}
+.plus{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--sun);color:var(--ink);font-weight:800;line-height:1}
+
+/* Banner */
+.banner{background:var(--candy) var(--doodle);border-bottom:3px solid var(--ink);position:relative;overflow:hidden}
+.awning{height:40px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 0H60V22A30 16 0 0 1 0 22Z' fill='%23E4572E'/%3E%3Cpath d='M60 0H120V22A30 16 0 0 1 60 22Z' fill='%23FFFDF9'/%3E%3C/svg%3E") repeat-x;filter:drop-shadow(0 3px 0 rgba(23,51,44,.35))}
+.banner .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;padding-top:34px;padding-bottom:24px}
+.banner h1{font-weight:800;font-size:clamp(3rem,8vw,5.6rem);letter-spacing:-.03em}
+.banner h1 span{display:inline-block;background:var(--fruit);color:var(--ink);border-radius:46% 54% 50% 50%/55% 45% 55% 45%;padding:0 .18em .06em;transform:rotate(-6deg);box-shadow:4px 4px 0 var(--ink)}
+.rib{display:inline-block;margin:20px 0 14px;background:var(--ink);color:var(--paper);font:800 clamp(1.15rem,3vw,1.6rem)/1.15 "Bricolage Grotesque",sans-serif;padding:12px 38px;clip-path:polygon(0 0,100% 0,calc(100% - 16px) 50%,100% 100%,0 100%,16px 50%)}
+.banner p.sub{max-width:28em;margin:0 0 22px;font-size:1.1rem}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.show{position:relative;display:grid;place-items:center;min-height:420px}
+.show .blob{position:absolute;width:min(400px,92%);aspect-ratio:1/1;border-radius:50%;background:var(--t);border:3px solid var(--ink);box-shadow:var(--pop)}
+.bagsvg{display:block;height:auto;filter:drop-shadow(0 12px 8px rgba(23,51,44,.3))}
+.show .bagsvg{position:relative;width:min(300px,70%);animation:pop .6s cubic-bezier(.3,1.6,.5,1) both;transform:rotate(4deg)}
+.show .mini{position:absolute;left:2%;bottom:4%;width:34%;filter:drop-shadow(0 10px 6px rgba(23,51,44,.35));animation:pop .6s .15s cubic-bezier(.3,1.6,.5,1) both;transform:rotate(-12deg)}
+.sticker{position:absolute;right:2%;top:6%;background:var(--bear-d);color:#fff;border:3px solid var(--paper);border-radius:50%;width:104px;height:104px;display:grid;place-items:center;text-align:center;font:800 .95rem/1.1 "Bricolage Grotesque",sans-serif;transform:rotate(12deg);box-shadow:3px 3px 0 var(--ink)}
+@keyframes pop{from{opacity:0;translate:0 -40px;scale:.7}to{opacity:1;translate:0 0;scale:1}}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:12px;padding-bottom:26px}
+.arrow{width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.arrow:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.arrow:active{transform:translate(2px,2px);box-shadow:none}
+.dot{width:18px;height:18px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);cursor:pointer;padding:0}
+.dot[aria-current=true]{background:var(--ink)}
+
+/* Secciones */
+section{padding:72px 0}
+section,header{scroll-margin-top:72px}
+.s-cat{background:#fff var(--doodle)}
+.s-guia{background:var(--sun)}
+.s-sol{background:var(--mint)}
+section h2{font-weight:800;font-size:clamp(2.1rem,5vw,3.2rem);margin-bottom:12px;letter-spacing:-.02em}
+.lead{max-width:36em;margin:0 0 24px}
+.sim{font-size:.9rem;background:var(--paper);border:2px dashed var(--ink);border-radius:12px;padding:8px 12px;margin:0 0 32px;max-width:44em}
+
+/* Tarjetas de producto */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:30px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--pop);position:relative}
+.card .pic{padding:56px 18px 16px;display:flex;justify-content:center;background:var(--t);background-image:radial-gradient(circle at 50% 55%,rgba(255,255,255,.8) 0,rgba(255,255,255,0) 64%);border-bottom:3px solid var(--ink);position:relative}
+.card .pic .bagsvg{width:210px;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.card:hover .pic .bagsvg{transform:rotate(-6deg) scale(1.07)}
+.card .tagpill{position:absolute;left:14px;top:14px;background:var(--paper);border:2px solid var(--ink);border-radius:999px;font-size:.8rem;font-weight:600;padding:2px 12px}
+.card .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:1.65rem;color:var(--d)}
+.card .body p{margin:0}
+.price{margin-top:auto!important;padding-top:6px}
+.price b{display:inline-block;background:var(--t);border:2px solid var(--ink);border-radius:999px;padding:1px 14px;font-weight:600;transform:rotate(-2deg)}
+.price small{font-size:.9rem;margin-left:6px}
+.card .row .btn{padding:8px 15px;font-size:.95rem}
+
+/* Guía */
+.pick{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.pick button{font:600 1.05rem Figtree,sans-serif;border:3px solid var(--ink);background:var(--paper);color:var(--ink);padding:12px 22px;border-radius:999px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.pick button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.pick button[aria-pressed=true]{background:var(--ink);color:var(--paper);transform:translate(2px,2px);box-shadow:none}
+#reco{background:var(--paper);border:3px solid var(--ink);border-radius:26px;padding:20px 22px;max-width:640px;min-height:96px;box-shadow:var(--pop)}
+#reco .rec{display:flex;gap:18px;align-items:center}
+#reco .rec .bagsvg{width:130px;flex:none;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
+#reco .rec div{flex:1}
+
+/* Solicitud */
+.sol{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:36px;align-items:start}
+form{background:var(--paper);border:3px solid var(--ink);border-radius:28px;padding:26px;display:grid;gap:16px;box-shadow:var(--pop)}
+form .sim{margin:0;background:var(--sun);border-style:solid}
+label{font-weight:600;display:block;margin-bottom:4px}
+input,select{width:100%;font:inherit;padding:11px 14px;border:2px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink)}
+.err{color:#A3261A;font-size:.9rem;min-height:1.2em;margin:4px 0 0;font-weight:600}
+.prev{background:var(--paper);border:3px solid var(--ink);border-radius:28px;box-shadow:var(--pop);padding:22px;text-align:center;position:sticky;top:90px}
+.prev .bag{background:var(--t,#fff);border:3px dashed var(--ink);border-radius:22px;min-height:250px;display:grid;place-items:center;padding:14px;transition:background .25s}
+.prev .bag .bagsvg{width:180px;animation:pop .45s cubic-bezier(.3,1.6,.5,1) both}
+.prev .trio{display:flex;gap:4px;justify-content:center;opacity:.55}
+.prev .trio svg{width:70px;height:70px}
+.prev p{margin:10px 0 0;font-weight:600}
+#res{margin-top:28px;max-width:640px;background:var(--ink);color:var(--paper);border:3px solid var(--ink);border-radius:26px;padding:22px 24px;box-shadow:5px 5px 0 var(--bear)}
+#res[hidden]{display:none}
+#res b{color:var(--sun)}
+
+/* Franja de información y pie */
+.info{background:var(--lagoon);color:#fff;border-top:3px solid var(--ink)}
+.info .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 20px;padding-top:22px;padding-bottom:22px;text-align:center}
+.info b{display:block;font:800 1.25rem/1.15 "Bricolage Grotesque",sans-serif}
+.info span{font-size:.92rem}
+footer{background:var(--ink);color:var(--paper);padding:30px 0;font-size:.9rem}
+
+/* Detalle */
+dialog{border:3px solid var(--ink);border-radius:28px;padding:0;max-width:500px;width:calc(100% - 32px);background:var(--paper);color:var(--ink);box-shadow:var(--pop);overflow:hidden}
+dialog::backdrop{background:rgba(23,51,44,.65)}
+dialog .topd{background:var(--t);border-bottom:3px solid var(--ink);display:flex;justify-content:center;padding:18px}
+dialog .topd .bagsvg{width:190px}
+dialog .in{padding:22px 24px 24px;display:grid;gap:10px}
+dialog h3{font-size:1.9rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.chips li{background:var(--t);border:2px solid var(--ink);border-radius:999px;padding:1px 12px;font-weight:600;font-size:.95rem}
+
+[hidden]{display:none!important}
+.bar button.m{font:600 1rem Figtree,sans-serif;background:none;border:0;color:#fff;padding:6px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.bar button.m:hover{background:rgba(255,255,255,.2)}
+.cc{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:6px;padding:0 5px;border-radius:999px;background:var(--sun);color:var(--ink);font-size:.8rem;font-weight:800}
+#toast{position:fixed;left:50%;bottom:20px;translate:-50% 20px;background:var(--ink);color:var(--paper);border:2px solid var(--sun);border-radius:999px;padding:10px 20px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,translate .2s;z-index:50}
+#toast.on{opacity:1;translate:-50% 0}
+#cdlg{max-height:90vh;overflow:auto}
+#okdlg{position:fixed}
+.xbtn{position:absolute;right:10px;top:8px;width:36px;height:36px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);color:var(--ink);font:800 1.3rem/1 Figtree,sans-serif;cursor:pointer}
+.li{display:flex;gap:12px;align-items:center;border-bottom:2px solid var(--ink);padding:8px 0}
+.li img{width:56px;height:auto;flex:none;border-radius:8px}.li .nm{flex:1}
+.qty{display:flex;gap:8px;align-items:center}
+.qty button{width:32px;height:32px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font-weight:800;font-size:1.1rem;cursor:pointer}
+.tot{display:flex;justify-content:space-between;margin:4px 0;background:var(--ink);color:var(--paper);border-radius:16px;padding:10px 16px}
+.tot b{color:var(--sun)}
+.qrbox{width:220px;height:220px;margin:0 auto;border:3px dashed var(--ink);border-radius:20px;display:grid;place-items:center;background:#fff;font:800 1.6rem "Bricolage Grotesque",sans-serif;color:var(--frail)}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:14px}
+legend{font:800 1.3rem "Bricolage Grotesque",sans-serif;padding:0;margin-bottom:6px}
+#sum{text-align:left}.srow{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
+#res .btn{margin-top:4px}
+@media (max-width:820px){
+ .bar{position:static}
+ section,header{scroll-margin-top:12px}
+ .bar .wrap{display:flex;flex-wrap:wrap;justify-content:center;height:auto;padding-top:6px;padding-bottom:6px}
+ .brand{order:-1;flex-basis:100%;width:130px;margin:4px auto;transform:none}
+ .brand:hover{transform:none}
+ .bar .l,.bar .r{justify-self:center;flex-wrap:wrap;justify-content:center}
+ .banner .grid2{grid-template-columns:1fr;padding-top:26px}
+ .show{min-height:340px}
+ .sol{grid-template-columns:1fr}
+ .prev{position:static}
+ .info .wrap{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+.step{background:var(--paper);border:3px solid var(--ink);border-radius:30px;box-shadow:var(--pop);padding:24px 20px 22px;position:relative;display:grid;gap:10px;align-content:start}
+.step h3{font-size:1.4rem}.step p{margin:0}
+.num{position:absolute;left:-10px;top:-16px;width:46px;height:46px;border-radius:50%;background:var(--bear-d);color:#fff;border:3px solid var(--paper);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;font:800 1.4rem "Bricolage Grotesque",sans-serif;transform:rotate(-8deg)}
+.ic{background:var(--t);border:3px solid var(--ink);border-radius:20px;display:grid;place-items:center;padding:12px}.ic svg{width:72px;height:72px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px 26px;margin-top:26px}
+.center{display:grid;place-items:center;text-align:center;gap:14px}
+.cartbox{background:var(--paper);border:3px solid var(--ink);border-radius:24px;box-shadow:var(--pop);padding:14px 18px;max-width:420px}
+.cartbox .li:last-of-type{border-bottom:0}
+.cartbox h2{font-size:1.3rem;margin:0 0 4px}
+</style></head><body><nav class="bar"><div class="wrap" style="display:flex;justify-content:center;height:56px"><a class="brand" href="./" aria-label="Ir a la tienda" style="margin:4px 0 -62px"><img src="logo.png" alt="Chicle &amp; Páramo" width="700" height="417"></a></div></nav>
+<header class="banner"><div class="awning"></div><div class="wrap grid2">
+<div><h1>Tu carrito, <span>en la app</span></h1><div class="rib">4 pasos · solo Android</div>
+<p class="sub">Instala la app de Chicle &amp; Páramo y retoma tu compra justo donde la dejaste.</p></div>
+<div class="center"><div class="cartbox" id="cartbox" hidden></div></div></div></header>
+<section class="s-guia"><div class="wrap"><h2>Cómo instalarla</h2>
+<p class="lead">Es un archivo APK, así que se instala directo desde tu celular. Toma menos de un minuto.</p>
+<div class="steps">
+<div class="step" style="--t:var(--candy)"><span class="num">1</span><div class="ic"><svg viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="16" fill="#FFD84D" stroke="#17332C" stroke-width="3"/><path d="M32 17v24M22 31l10 10 10-10M19 49h26" fill="none" stroke="#17332C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Descarga el APK</h3><p>Toca el botón para bajar el archivo de la app. Si Drive muestra un aviso, elige <b>Descargar de todos modos</b>.</p><a class="btn" id="dl" target="_blank" rel="noopener">Descargar app</a></div>
+<div class="step" style="--t:#C7E9F2"><span class="num">2</span><div class="ic"><svg viewBox="0 0 64 64"><rect x="6" y="18" width="52" height="28" rx="14" fill="#CDEEDD" stroke="#17332C" stroke-width="3"/><circle cx="44" cy="32" r="9" fill="#E4572E" stroke="#17332C" stroke-width="3"/></svg></div><h3>Permite la instalación</h3><p>Si Android lo pide, toca <b>Configuración</b> y activa <b>Permitir de esta fuente</b>.</p></div>
+<div class="step" style="--t:var(--mint)"><span class="num">3</span><div class="ic"><svg viewBox="0 0 64 64"><rect x="18" y="5" width="28" height="54" rx="7" fill="#fff" stroke="#17332C" stroke-width="3"/><path d="M32 17v18M25 29l7 7 7-7" fill="none" stroke="#17332C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 46h14" stroke="#E4572E" stroke-width="4" stroke-linecap="round"/></svg></div><h3>Abre e instala</h3><p>Abre el archivo descargado y toca <b>Instalar</b>. Si sale un aviso de Play Protect, elige <b>Instalar de todos modos</b>.</p></div>
+<div class="step" style="--t:#FFEAB0"><span class="num">4</span><div class="ic"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#fff" stroke="#17332C" stroke-width="3"/><path d="M19 33l9 9 17-19" fill="none" stroke="#17332C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>¡Listo!</h3><p>Toca el botón de abajo y tu carrito aparecerá en la app.</p></div>
+</div></div></section>
+<section class="s-sol"><div class="wrap center"><h2>¿Ya la instalaste?</h2><a class="btn" id="open">Abrir mi carrito en la app</a>
+<p class="sim">¿Estás en iPhone o computador? La app es solo para Android; puedes terminar tu compra en <a href="./">la página</a>.</p></div></section>
+<footer><div class="wrap">Chicle &amp; Páramo es una empresa ficticia creada para un proyecto académico de la Universidad Central. Todos los datos son simulados.</div></footer>
+<script>
+const PKG="com.chicleyparamo.app";            // appId de tu capacitor.config
+const APK_URL="https://drive.google.com/uc?export=download&id=1-JSLVsPx5KiRZyn18BxZua1VaVDxOQHA";
+const N={ositos:"Ositos Niebla",tiburones:"Tiburones Laguna",frutas:"Frutas del Páramo"};
+const IMG={ositos:"ositos-niebla",tiburones:"tiburones-laguna",frutas:"frutas-del-paramo"};
+const c=new URLSearchParams(location.search).get("c")||"";
+const intent=(fb)=>"intent://carrito?c="+encodeURIComponent(c)+"#Intent;scheme=chicleparamo;package="+PKG+(fb?";S.browser_fallback_url="+encodeURIComponent(fb):"")+";end";
+document.getElementById("dl").href=APK_URL;
+document.getElementById("open").href=intent("");
+const T=document.getElementById("cartbox");
+if(c&&T){const L=c.split(",").map(s=>s.split(":")).filter(([k,q])=>N[k]&&+q>0);
+if(L.length){T.hidden=false;T.innerHTML='<h2>Tu carrito te espera</h2>'+L.map(([k,q])=>'<div class="li"><img src="imagenes/'+IMG[k]+'.webp" alt=""><div class="nm"><b>'+N[k]+'</b></div><b>× '+q+'</b></div>').join("")}}
+</script></body></html>
