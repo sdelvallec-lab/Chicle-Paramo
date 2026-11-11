@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="logo.png" type="image/png"><title>Abriendo Chicle & Páramo…</title><style>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="logo.png" type="image/png"><title>Tu carrito en Chicle & Páramo</title><style>
 @font-face{font-family:"Bricolage Grotesque";font-weight:500;font-display:swap;src:url(fuentes/bricolage-grotesque-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:"Bricolage Grotesque";font-weight:800;font-display:swap;src:url(fuentes/bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
 @font-face{font-family:Figtree;font-weight:400;font-display:swap;src:url(fuentes/figtree-latin-400-normal.woff2) format("woff2")}
@@ -187,23 +187,43 @@ legend{font:800 1.3rem "Bricolage Grotesque",sans-serif;padding:0;margin-bottom:
 .cartbox h2{font-size:1.3rem;margin:0 0 4px}
 </style></head><body>
 <header class="banner" style="min-height:100vh"><div class="awning"></div><div class="wrap center" style="padding-top:40px">
-<img src="logo.png" alt="Chicle &amp; Páramo" width="180"><h1 style="font-size:2.6rem">Abriendo la app…</h1>
+<img src="logo.png" alt="Chicle &amp; Páramo" width="180"><h1 style="font-size:2.6rem">Tu carrito está listo</h1>
 <div class="cartbox" id="cartbox" hidden></div>
-<a class="btn" id="open">Abrir en la app</a>
-<a class="btn alt" id="inst">No la tengo: ver cómo instalarla</a></div></header>
+<a class="btn" id="open" href="#">Abrir en la app</a>
+<a class="btn alt" id="inst" href="infografia.html">No la tengo: ver cómo instalarla</a></div></header>
 <script>
-const PKG="com.chicleyparamo.app";            // appId de tu capacitor.config
-const APK_URL="https://drive.google.com/drive/folders/1Vh2iSOkJMc0Uzwiux-NtltzGWQPBODNP?usp=sharing";
+// appId: debe ser IDÉNTICO al de capacitor.config.ts
+const PKG="com.chicleyparamo.app";
+
 const N={ositos:"Ositos Niebla",tiburones:"Tiburones Laguna",frutas:"Frutas del Páramo"};
 const IMG={ositos:"ositos-niebla",tiburones:"tiburones-laguna",frutas:"frutas-del-paramo"};
 const c=new URLSearchParams(location.search).get("c")||"";
-const intent=(fb)=>"intent://carrito?c="+encodeURIComponent(c)+"#Intent;scheme=chicleparamo;package="+PKG+(fb?";S.browser_fallback_url="+encodeURIComponent(fb):"")+";end";
+const isAndroid=/Android/i.test(navigator.userAgent);
+
+// Página de instalación (conserva el carrito en la URL)
 const info="infografia.html"+(c?"?c="+encodeURIComponent(c):"");
 const fb=new URL(info,location.href).href;
-document.getElementById("open").href=intent(fb);
+
+// Intent de Android: abre la app si está instalada; si no, Chrome va a la infografía
+const intent="intent://carrito?c="+encodeURIComponent(c)+
+  "#Intent;scheme=chicleparamo;package="+PKG+
+  ";S.browser_fallback_url="+encodeURIComponent(fb)+";end";
+
+document.getElementById("open").href=intent;
 document.getElementById("inst").href=info;
+
+// Resumen del carrito
 const T=document.getElementById("cartbox");
-if(c&&T){const L=c.split(",").map(s=>s.split(":")).filter(([k,q])=>N[k]&&+q>0);
-if(L.length){T.hidden=false;T.innerHTML='<h2>Tu carrito te espera</h2>'+L.map(([k,q])=>'<div class="li"><img src="imagenes/'+IMG[k]+'.webp" alt=""><div class="nm"><b>'+N[k]+'</b></div><b>× '+q+'</b></div>').join("")}}
-if(/Android/i.test(navigator.userAgent))location.replace(intent(fb));else location.replace(info);
+if(c&&T){
+  const L=c.split(",").map(s=>s.split(":")).filter(([k,q])=>N[k]&&+q>0);
+  if(L.length){
+    T.hidden=false;
+    T.innerHTML='<h2>Tu carrito te espera</h2>'+L.map(([k,q])=>
+      '<div class="li"><img src="imagenes/'+IMG[k]+'.webp" alt=""><div class="nm"><b>'+N[k]+'</b></div><b>× '+q+'</b></div>').join("");
+  }
+}
+
+// En Android NO se abre solo (Chrome bloquea los intents sin toque del usuario):
+// la persona toca "Abrir en la app". iPhone y computador van directo a la infografía.
+if(!isAndroid) location.replace(info);
 </script></body></html>
